@@ -1,0 +1,35 @@
+# Example rule with exception
+- rule: '[AD] Unwanted command detected in container'
+  desc: This is a simple demo rule to show how you can detect a specifc process running in a container leveraging a simple macro and list
+  condition: process_in_container and proc.name in (unwanted_commands)
+  output: Unwanted command detected (process=%proc.name | user=%user.name | container=%container.name | image=%container.image)
+  priority: WARNING
+  source: syscall
+  append: false
+  exceptions:
+    - name: image_repo
+      fields: [container.image.repository]
+      comps: [endswith]
+      values: 
+        - ["ubuntu"]
+
+# Example Falco Macro used in example rule Unwanted Command detected in container
+- macro: process_in_container
+  condition: evt.type = execve and container.id != host
+
+# Example Falco list used in example rule Unwanted Command detected in container
+- list: unwanted_commands
+  items: [curl, nc, top]
+
+# Example on how to append a standard delivered list
+- list: run_as_root_image_list
+  items: [quay.io/sysdig/agent-kmodule, docker.io/sysdig/agent, docker.io/sysdig/agent-slim]
+  append: true
+
+- rule: Set Setuid or Setgid bit
+  exceptions:
+    - name: cmdline_prefix_container_id
+      values:
+        - - docker
+          - host
+  append: true

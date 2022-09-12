@@ -24,6 +24,8 @@ version=$(curl --silent --output /dev/null --show-error --request GET --url ${FA
 # Note: -z doesn't work on MAC - try zsed if you are on MAC
 CONTENT=$(cat falco_rules_local.yaml | sed -z 's/\n/\\n/g;s/\\n$/\n/')
 
+echo $CONTENT
+
 # Call the Sysdig customRulesFiles API to push our new rules file 
 curl -w "%{http_code}\n" --show-error --request PUT --url ${FALCO_RULES_FILE} --header 'content-type: application/json' --header "Authorization: Bearer ${SECURE_API_TOKEN}" \
   -d '{"filename":"falco_rules_local.yaml","content":"'"${CONTENT}"'","version":'"${version}"'}'

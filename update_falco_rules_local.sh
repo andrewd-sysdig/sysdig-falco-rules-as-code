@@ -21,9 +21,11 @@ FALCO_RULES_FILE="https://${API_ENDPOINT}/api/settings/falco/customRulesFiles/fa
 version=$(curl --silent --output /dev/null --show-error --request GET --url ${FALCO_RULES_FILE} --header 'content-type: application/json' --header "Authorization: Bearer ${SECURE_API_TOKEN}" | jq .version)
 
 # Get content of the falco_rules_local.yaml and convert to a single line with escaped newline \n characters
-# Note: -z doesn't work on MAC - try zcat if you are on MAC
+# Note: -z doesn't work on MAC - try zsed if you are on MAC
 CONTENT=$(cat falco_rules_local.yaml | sed -z 's/\n/\\n/g;s/\\n$/\n/')
 
 # Call the Sysdig customRulesFiles API to push our new rules file 
-curl -w "%{http_code}\n" --silent --output /dev/null --show-error --request PUT --url ${FALCO_RULES_FILE} --header 'content-type: application/json' --header "Authorization: Bearer ${SECURE_API_TOKEN}" \
+curl -w "%{http_code}\n" --show-error --request PUT --url ${FALCO_RULES_FILE} --header 'content-type: application/json' --header "Authorization: Bearer ${SECURE_API_TOKEN}" \
   -d '{"filename":"falco_rules_local.yaml","content":"'"${CONTENT}"'","version":'"${version}"'}'
+
+  # --silent --output /dev/null

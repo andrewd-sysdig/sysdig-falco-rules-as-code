@@ -33,3 +33,8 @@
         - - docker
           - host
   append: true
+
+# Example Falco list used for K8s_AUDIT Rule Create Disallowed Namespace
+- list: allowed_namespaces
+  items: [test]
+  append: true

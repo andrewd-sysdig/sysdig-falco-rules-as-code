@@ -3,8 +3,8 @@ name: Update Falco rules in Sysdig
 on:
   push:
     branches: [ "main" ]
-  paths-ignore:
-      - '**.md'
+    paths-ignore:
+        - '**.md'
 
 env:
   API_ENDPOINT: app.au1.sysdig.com

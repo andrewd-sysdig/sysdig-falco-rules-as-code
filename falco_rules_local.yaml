@@ -26,14 +26,6 @@
   items: [quay.io/sysdig/agent-kmodule, docker.io/sysdig/agent, docker.io/sysdig/agent-slim]
   append: true
 
-- rule: Set Setuid or Setgid bit
-  exceptions:
-    - name: cmdline_prefix_container_id
-      values:
-        - - docker
-          - host
-  append: true
-
 # Example Falco list used for K8s_AUDIT Rule Create Disallowed Namespace
 - list: allowed_namespaces
   items: [test, test1]

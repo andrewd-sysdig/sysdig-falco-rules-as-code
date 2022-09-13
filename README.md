@@ -7,6 +7,7 @@ Example workflow on how to manage your custom falco rules &amp; exceptions as co
 - See the [Falco documentation](https://falco.org/docs/rules/) for the syntax of a Falco rule
 - Checkout the [free Falco 101 Training](https://falco.org/training/)
 - Note the `update_falco_rules_local.sh` doesn't work on MAC due to a requirement for `sed -z`. If you want to run it on mac you need to install and change this to `gsed`
+- Note make sure not to use any double quotes " in your falco_rules_local.yaml file
 
 ## Usage
 Two environment variables are required:

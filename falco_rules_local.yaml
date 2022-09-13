@@ -11,7 +11,7 @@
       fields: [container.image.repository]
       comps: [endswith]
       values: 
-        - ["ubuntu"]
+        - ['ubuntu']
 
 # Example Falco Macro used in example rule Unwanted Command detected in container
 - macro: process_in_container

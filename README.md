@@ -1,6 +1,8 @@
 # Managing your Sysdig Custom Falco Rules as code
 Example workflow on how to manage your custom falco rules &amp; exceptions as code
 
+> :warning: I recommend using our [Terraform Provider](https://registry.terraform.io/providers/sysdiglabs/sysdig/latest/docs/resources/secure_rule_syscall) to manage your rules rather than this way, but if you are unable to use terraform for whatever reason here you go :) 
+
 - Manage your custom falco rules including exceptions in the `falco_rules_local.yaml` file. 
 - Use the `update_falco_rules_local.sh` file to push the new file to Sysdig. 
 - Warning this will overwrite the Custom Rules file so any changes anyone has made to that file in the UI will be replaced with the contents of this file

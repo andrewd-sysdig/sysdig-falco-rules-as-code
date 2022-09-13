@@ -18,7 +18,7 @@ fi
 FALCO_RULES_FILE="https://${API_ENDPOINT}/api/settings/falco/customRulesFiles/falco_rules_local.yaml"
 
 # Get version of current rules file as this is required to update them
-version=$(curl --silent --output /dev/null --show-error --request GET --url ${FALCO_RULES_FILE} --header 'content-type: application/json' --header "Authorization: Bearer ${SECURE_API_TOKEN}" | jq .version)
+version=$(curl --output /dev/null --show-error --request GET --url ${FALCO_RULES_FILE} --header 'content-type: application/json' --header "Authorization: Bearer ${SECURE_API_TOKEN}" | jq .version)
 
 # Get content of the falco_rules_local.yaml and convert to a single line with escaped newline \n characters
 # Note: -z doesn't work on MAC - try zsed if you are on MAC

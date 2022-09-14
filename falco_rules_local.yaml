@@ -30,3 +30,19 @@
 - list: allowed_namespaces
   items: [test, test1, test2]
   append: true
+
+# Example Falco rule detecting a file on disk read that was mounted by a secret
+- rule: '[AD] Sensitive file read inside container'
+  desc: Example rule to detect if file in K8s Token is read inside container
+  condition: >-
+    fd.name startswith /run/secrets/kubernetes.io/serviceaccount/token and
+    open_read and container.id != host
+  output: >-
+    Sensitive file read inside container (process=%proc.name | file=%fd.name |
+    user=%user.name | container=%container.name | image=%container.image)
+  priority: warning
+  tags: []
+  source: syscall
+  append: false
+  exceptions: []
+

@@ -1,6 +1,7 @@
 name: 'Terraform - Update Sysdig Rules'
 
 on:
+  workflow_dispatch:
   push:
     branches: [ "main" ]
     paths:

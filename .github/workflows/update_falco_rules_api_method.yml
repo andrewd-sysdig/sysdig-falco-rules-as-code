@@ -1,4 +1,4 @@
-name: Update Falco rules in Sysdig
+name: 'API - Update Sysdig Rules'
 
 on:
   push:

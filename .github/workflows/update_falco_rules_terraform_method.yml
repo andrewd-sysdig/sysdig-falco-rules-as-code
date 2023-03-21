@@ -1,4 +1,4 @@
-name: 'Sysdig Runtime as a Code with Terraform and GitHub actions'
+name: 'Terraform - Update Sysdig Rules'
 
 on:
   push:

@@ -22,4 +22,4 @@ jobs:
         working-directory: ./api_method
         run: |
           pip3 install requests
-          python3 update_falco_rules_local.py
+          python3 update_falco_rules.py

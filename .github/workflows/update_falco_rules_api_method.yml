@@ -21,6 +21,5 @@ jobs:
 
       - name: Update Falco Rules
         working-directory: ./api_method
-        run: |
-          pip3 install requests
-          python3 update_falco_rules.py
+        run: python3 update_falco_rules.py
+          

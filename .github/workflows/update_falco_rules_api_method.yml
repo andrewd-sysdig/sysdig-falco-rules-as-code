@@ -19,6 +19,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Validate falco_rules_local.yaml file
+        working-directory: ./api_method
+        run: docker run -v $(pwd)/falco_rules_local.yaml:/home/app/falco_rules_local.yaml -e SECURE_API_TOKEN=$SECURE_API_TOKEN -e API_ENDPOINT=$API_ENDPOINT ghcr.io/andrewd-sysdig/sysdig-rules-validator:latestsysdig-rules-validator:latest
+
       - name: Update Falco Rules
         working-directory: ./api_method
         run: python3 update_falco_rules.py

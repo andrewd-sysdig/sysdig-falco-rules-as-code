@@ -16,4 +16,4 @@ Two environment variables are required:
 - `SECURE_API_TOKEN` - This is your Sysdig Secure API Token (note this is different to your ACCESS KEY)
 - `API_ENDPOINT` - This is the base URL of your Sysdig region
 
-`SECURE_API_TOKEN=xxx API_ENDPOINT=app.au1.sysdig.com python3 update_falco_rules_local.py`
+`SECURE_API_TOKEN=xxx API_ENDPOINT=app.au1.sysdig.com python3 update_falco_rules.py`
